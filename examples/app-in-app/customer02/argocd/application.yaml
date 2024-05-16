@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-20"
+  labels:
+    customer: customer02
+  name: customer02-static-1
+  namespace: argocd
+spec:
+  destination:
+    name: in-cluster
+    namespace: customer02
+  project: customers-customer02
+  source:
+    repoURL: https://github.com/pascalva/gitops-test
+    targetRevision: main
+    path: examples/app-in-app/customer02/applications/static-1
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

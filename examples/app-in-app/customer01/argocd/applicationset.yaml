@@ -1,0 +1,48 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: customer01
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/manifest-generate-paths: .
+  labels:
+    customer: customer01
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      repoURL: https://github.com/pascalva/gitops-test
+      revision: main
+      directories:
+      - path: "examples/app-in-app/customer01/applications/*"
+      - path: "examples/app-in-app/customer01/applications/static-app-*"
+        exclude: true
+  template:
+    metadata:
+      name: 'customer01-{{.path.basename}}'
+      namespace: argocd
+      annotations:
+        argocd.argoproj.io/manifest-generate-paths: .
+      labels:
+        app: '{{.path.basename}}'
+    spec:
+      project: customers-customer01
+      source:
+        repoURL: https://github.com/pascalva/gitops-test
+        targetRevision: main
+        path: '{{.path.path}}'
+      destination:
+        name: in-cluster
+        namespace: customer01
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+          allowEmpty: false
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  ignoreApplicationDifferences:
+  - jsonPointers:
+      - /metadata/finalizers

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: dynamic-3
+  name: dynamic-3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dynamic-3
+  template:
+    metadata:
+      labels:
+        app: dynamic-3
+    spec:
+      containers:
+      - image: nginx:latest
+        name: nginx
+        volumeMounts:
+        - name: config-dynamic-3
+          mountPath: /usr/share/nginx/html/
+      volumes:
+      - name: config-dynamic-3
+        configMap:
+          name: dynamic-3

@@ -1,0 +1,34 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: customers-customer02
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: MutatingWebhookConfiguration
+  - group: '*'
+    kind: ClusterRoleBinding
+  - group: '*'
+    kind: ClusterRole
+  - group: '*'
+    kind: AppArmorProfile
+  - group: '*'
+    kind: SeccompProfile
+  description: "Customer customer02 project"
+  destinations:
+  - name: in-cluster
+    namespace: argocd
+    server: 'https://kubernetes.default.svc'
+  - name: in-cluster
+    namespace: customer02
+    server: 'https://kubernetes.default.svc'
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
+# signatureKeys:
+# - keyID: "{{ lookup('tdw_hashivault', 'tools/argocd/gpg_keys', 'gpg_key_id')}}"
+  sourceRepos:
+  - https://github.com/pascalva/gitops-test
+

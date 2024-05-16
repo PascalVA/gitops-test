@@ -1,0 +1,21 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: customers
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - name: '*'
+    namespace: argocd
+    server: 'https://kubernetes.default.svc'
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
+# signatureKeys:
+# - keyID: "{{ lookup('tdw_hashivault', 'tools/argocd/gpg_keys', 'gpg_key_id')}}"
+  sourceRepos:
+  - https://github.com/pascalva/gitops-test
