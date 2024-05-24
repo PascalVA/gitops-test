@@ -39,4 +39,5 @@ spec:
           prune: true
           selfHeal: true
           allowEmpty: false
-        preserveResourcesOnDeletion: true
+  syncPolicy:
+    preserveResourcesOnDeletion: true
