@@ -25,6 +25,7 @@ spec:
       labels:
         cluster: in-cluster
         cluster-scope: root
+        app: '{{.path.basename}}'
     spec:
       project: applications
       source:
