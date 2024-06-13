@@ -42,3 +42,6 @@ spec:
           allowEmpty: false
   syncPolicy:
     preserveResourcesOnDeletion: true
+  ignoreApplicationDifferences:
+  - jsonPointers:
+      - /metadata/finalizers
