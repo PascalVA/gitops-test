@@ -16,7 +16,7 @@ spec:
       revision: main
       directories:
       - path: "applications/*"
-      - path: "applications/nginx-grey"
+      - path: "applications/static-app-*"
         exclude: true
   template:
     metadata:

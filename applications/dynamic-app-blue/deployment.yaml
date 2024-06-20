@@ -2,18 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: nginx-red
+    app: dynamic-app-blue
   namespace: applications
-  name: nginx-red
+  name: dynamic-app-blue
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx-red
+      app: dynamic-app-blue
   template:
     metadata:
       labels:
-        app: nginx-red
+        app: dynamic-app-blue
     spec:
       containers:
       - image: nginx:latest

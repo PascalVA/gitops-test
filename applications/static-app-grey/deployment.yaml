@@ -2,18 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: nginx-grey
+    app: static-app-grey
   namespace: applications
-  name: nginx-grey
+  name: static-app-grey
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx-grey
+      app: static-app-grey
   template:
     metadata:
       labels:
-        app: nginx-grey
+        app: static-app-grey
     spec:
       containers:
       - image: nginx:latest
