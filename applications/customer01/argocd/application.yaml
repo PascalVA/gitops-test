@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-20"
+  labels:
+    cluster: in-cluster
+    cluster-scope: customer01
+    customer: customer01
+  name: static-app-grey
+  namespace: argocd
+spec:
+  destination:
+    name: in-cluster
+    namespace: argocd
+  project: applications
+  source:
+    path: applications/static-app-grey
+    repoURL: https://github.com/PascalVA/gitops-test.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

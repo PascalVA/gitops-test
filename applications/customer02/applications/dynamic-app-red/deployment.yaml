@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: dynamic-app-red
+  namespace: applications
+  name: dynamic-app-red
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dynamic-app-red
+  template:
+    metadata:
+      labels:
+        app: dynamic-app-red
+    spec:
+      containers:
+      - image: nginx:latest
+        name: nginx

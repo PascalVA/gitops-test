@@ -5,7 +5,8 @@ metadata:
     argocd.argoproj.io/sync-wave: "-20"
   labels:
     cluster: in-cluster
-    cluster-scope: root
+    cluster-scope: customer02
+    customer: customer02
   name: static-app-grey
   namespace: argocd
 spec:

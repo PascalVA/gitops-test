@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: static-app-grey
+  namespace: applications
+  name: static-app-grey
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: static-app-grey
+  template:
+    metadata:
+      labels:
+        app: static-app-grey
+    spec:
+      containers:
+      - image: nginx:latest
+        name: nginx
