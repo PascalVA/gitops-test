@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     app: dynamic-app-red
-  namespace: applications
   name: dynamic-app-red
 spec:
   replicas: 1

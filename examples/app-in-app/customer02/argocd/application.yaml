@@ -4,8 +4,6 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-20"
   labels:
-    cluster: in-cluster
-    cluster-scope: customer02
     customer: customer02
   name: static-app-grey
   namespace: argocd
@@ -15,9 +13,9 @@ spec:
     namespace: argocd
   project: applications
   source:
-    path: applications/static-app-grey
     repoURL: https://github.com/PascalVA/gitops-test.git
     targetRevision: main
+    path: examples/app-in-apps/customer02/applications/static-app-grey
   syncPolicy:
     automated:
       prune: true

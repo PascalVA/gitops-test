@@ -2,12 +2,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: customer01-applicationset
+  name: customer02-applicationset
   namespace: argocd
   labels:
-    cluster: in-cluster
-    cluster-scope: customer01
-    customer: customer01
+    customer: customer02
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
@@ -16,23 +14,21 @@ spec:
       repoURL: https://github.com/PascalVA/gitops-test.git
       revision: main
       directories:
-      - path: "applications/*"
-      - path: "applications/static-app-*"
+      - path: "examples/app-in-apps/customer02/applications/*"
+      - path: "examples/app-in-apps/customer02/applications/static-app-*"
         exclude: true
   template:
     metadata:
       name: 'app-{{.path.basename}}'
       namespace: applications
       labels:
-        cluster: in-cluster
-        cluster-scope: customer01
         app: '{{.path.basename}}'
     spec:
       project: applications
       source:
         repoURL: https://github.com/PascalVA/gitops-test.git
         targetRevision: main
-        path: 'applications/{{.path.basename}}'
+        path: '{{.path.path}}'
       destination:
         name: in-cluster
         namespace: argocd

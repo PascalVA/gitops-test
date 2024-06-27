@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   labels:
     app: static-app-grey
-  namespace: applications
   name: static-app-grey
 spec:
   replicas: 1
