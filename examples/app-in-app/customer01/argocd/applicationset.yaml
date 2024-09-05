@@ -40,7 +40,7 @@ spec:
         automated:
           prune: true
           selfHeal: true
-          allowEmpty: false
+          allowEmpty: true
   syncPolicy:
     preserveResourcesOnDeletion: true
   ignoreApplicationDifferences:
