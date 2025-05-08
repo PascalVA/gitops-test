@@ -1,0 +1,19 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: one-off-job
+  namespace: default
+spec:
+  ttlSecondsAfterFinished: 10  # delete the job 60 seconds after completion
+  template:
+    spec:
+      containers:
+        - name: one-off-job
+          image: alpine:latest
+          command:
+            - /bin/sh
+          args:
+            - -c
+            - ":"
+      restartPolicy: Never
